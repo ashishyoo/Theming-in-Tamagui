@@ -1,10 +1,9 @@
 import { Button, XStack } from 'tamagui'
 import { useThemeContext } from 'app/provider/ThemeContext'
-import { useVariantContext } from 'app/provider/VariantContext'
 
 export const SwitchThemeButton = () => {
   const { theme, toggleTheme } = useThemeContext()
-  const { setVariant } = useVariantContext()
+  const { setVariant } = useThemeContext()
   console.log(theme)
   return (
     <>

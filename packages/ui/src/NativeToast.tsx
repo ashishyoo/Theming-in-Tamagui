@@ -1,10 +1,10 @@
 import { Toast, useToastState } from '@tamagui/toast'
 import { YStack } from 'tamagui'
-import { useVariantContext } from 'app/provider/VariantContext'
+import { useThemeContext } from 'app/provider/ThemeContext'
 
 export const NativeToast = () => {
   const currentToast = useToastState()
-  const { variant } = useVariantContext()
+  const { variant } = useThemeContext()
 
   if (!currentToast || currentToast.isHandledNatively) {
     return null

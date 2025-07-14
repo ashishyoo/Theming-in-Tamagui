@@ -12,7 +12,7 @@ import {
   YStack,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { useVariantContext } from 'app/provider/VariantContext'
+import { useThemeContext } from 'app/provider/ThemeContext'
 import { useState } from 'react'
 import { Platform } from 'react-native'
 import { useLink } from 'solito/navigation'
@@ -23,7 +23,7 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
     href: `${linkTarget}/namaste`,
   })
 
-  const { variant } = useVariantContext()
+  const { variant } = useThemeContext()
 
   return (
     <YStack

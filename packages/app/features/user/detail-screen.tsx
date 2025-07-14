@@ -1,11 +1,11 @@
 import { Button, Paragraph, YStack } from '@my/ui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
-import { useVariantContext } from 'app/provider/VariantContext'
+import { useThemeContext } from 'app/provider/ThemeContext'
 import { useRouter } from 'solito/navigation'
 
 export function UserDetailScreen({ id }: { id: string }) {
   const router = useRouter()
-  const { variant } = useVariantContext()
+  const { variant } = useThemeContext()
 
   if (!id) {
     return null
