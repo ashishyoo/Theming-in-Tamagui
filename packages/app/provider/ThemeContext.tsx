@@ -1,12 +1,15 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useColorScheme, Platform } from 'react-native'
 import { useRootTheme } from '@tamagui/next-theme'
-import { colors } from '@tamagui/themes/types/generated-v4-tamagui'
 
 interface ThemeContextType {
   theme: string
   toggleTheme: () => void
+  variant: ThemeName
+  setVariant: (variant: 'red' | 'blue' | 'green' | 'yellow') => void
 }
+
+type ThemeName = 'red' | 'blue' | 'green' | 'yellow' | null
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
@@ -33,7 +36,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  const [variant, setVariant] = useState<ThemeName>(null)
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme, variant, setVariant }}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }
 
 export function useThemeContext() {
