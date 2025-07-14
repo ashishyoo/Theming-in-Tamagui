@@ -95,12 +95,7 @@ function SheetDemo() {
         onPositionChange={setPosition}
         dismissOnSnapToBottom
       >
-        <Sheet.Overlay
-          bg="$backgroundTransparent"
-          animation="lazy"
-          enterStyle={{ opacity: 0 }}
-          exitStyle={{ opacity: 0 }}
-        />
+        <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
         <Sheet.Handle />
         <Sheet.Frame items="center" justify="center" gap="$10">
           <XStack gap="$2">
