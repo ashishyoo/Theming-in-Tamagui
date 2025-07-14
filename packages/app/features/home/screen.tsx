@@ -9,9 +9,10 @@ import {
   SwitchThemeButton,
   useToastController,
   XStack,
-  YStack
+  YStack,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
+import { useThemeContext } from 'app/provider/ThemeContext'
 import { useState } from 'react'
 import { Platform } from 'react-native'
 import { useLink } from 'solito/navigation'
@@ -19,11 +20,21 @@ import { useLink } from 'solito/navigation'
 export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
   const linkTarget = pagesMode ? '/pages-example-user' : '/user'
   const linkProps = useLink({
-    href: `${linkTarget}/nate`,
+    href: `${linkTarget}/namaste`,
   })
 
+  const { variant } = useThemeContext()
+
   return (
-    <YStack flex={1} justify="center" items="center" gap="$8" p="$4" bg="$background">      
+    <YStack
+      flex={1}
+      justify="center"
+      items="center"
+      gap="$8"
+      p="$4"
+      bg={'$background'}
+      theme={variant}
+    >
       <XStack
         position="absolute"
         width="100%"
@@ -36,16 +47,14 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
         {Platform.OS === 'web' && (
           <>
             <SwitchRouterButton pagesMode={pagesMode} />
-            <SwitchThemeButton />
           </>
         )}
+        <SwitchThemeButton />
       </XStack>
 
-      <YStack gap="$4">
-        <H1 text="center" color="$color12">
-          Welcome to Tamagui.
-        </H1>
-        <Paragraph color="$color10" text="center">
+      <YStack gap="$4" marginTop={'$10'}>
+        <H1 text="center">Namaste to Tamagui.</H1>
+        <Paragraph text="center">
           Here's a basic starter to show navigating from one screen to another.
         </Paragraph>
         <Separator />
@@ -86,25 +95,15 @@ function SheetDemo() {
         onPositionChange={setPosition}
         dismissOnSnapToBottom
       >
-        <Sheet.Overlay
-          bg="$shadow4"
-          animation="lazy"
-          enterStyle={{ opacity: 0 }}
-          exitStyle={{ opacity: 0 }}
-        />
-        <Sheet.Handle bg="$color8" />
-        <Sheet.Frame items="center" justify="center" gap="$10" bg="$color2">
+        <Sheet.Overlay animation="lazy" enterStyle={{ opacity: 0 }} exitStyle={{ opacity: 0 }} />
+        <Sheet.Handle />
+        <Sheet.Frame items="center" justify="center" gap="$10">
           <XStack gap="$2">
             <Paragraph text="center">Made by</Paragraph>
-            <Anchor color="$blue10" href="https://twitter.com/natebirdman" target="_blank">
+            <Anchor href="https://twitter.com/natebirdman" target="_blank">
               @natebirdman,
             </Anchor>
-            <Anchor
-              color="$blue10"
-              href="https://github.com/tamagui/tamagui"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Anchor href="https://github.com/tamagui/tamagui" target="_blank" rel="noreferrer">
               give it a ⭐️
             </Anchor>
           </XStack>

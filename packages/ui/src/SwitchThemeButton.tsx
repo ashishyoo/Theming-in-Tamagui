@@ -1,16 +1,19 @@
-import { useState } from 'react'
-import { Button, useIsomorphicLayoutEffect } from 'tamagui'
-import { useThemeSetting, useRootTheme } from '@tamagui/next-theme'
+import { Button, XStack } from 'tamagui'
+import { useThemeContext } from 'app/provider/ThemeContext'
 
 export const SwitchThemeButton = () => {
-  const themeSetting = useThemeSetting()
-  const [theme] = useRootTheme()
-
-  const [clientTheme, setClientTheme] = useState<string | undefined>('light')
-
-  useIsomorphicLayoutEffect(() => {
-    setClientTheme(themeSetting.forcedTheme || themeSetting.current || theme)
-  }, [themeSetting.current, themeSetting.resolvedTheme])
-
-  return <Button onPress={themeSetting.toggle}>Change theme: {clientTheme}</Button>
+  const { theme, toggleTheme } = useThemeContext()
+  const { setVariant } = useThemeContext()
+  console.log(theme)
+  return (
+    <>
+      <Button onPress={toggleTheme}>Mode: {theme}</Button>
+      <XStack gap={'$1.5'}>
+        <Button onPress={() => setVariant('red')}>Red</Button>
+        <Button onPress={() => setVariant('green')}>Green</Button>
+        <Button onPress={() => setVariant('blue')}>Blue</Button>
+        <Button onPress={() => setVariant('yellow')}>Yellow</Button>
+      </XStack>
+    </>
+  )
 }
